@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+venv/
+
+# Ignore environment variables
+.env
+
+# Ignore database files
+*.sqlite3
+
+# Ignore Django static and media files (optional)
+staticfiles/
+media/
+
+# Ignore Django migrations (optional)
+*/migrations/
