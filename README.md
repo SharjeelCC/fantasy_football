@@ -1,93 +1,136 @@
-Fantasy Football Platform Case Study
-This project is a Fantasy Football Platform implemented with Django and Django REST Framework. It provides features for user registration, team and player management, player transfers, and transaction history, along with JWT authentication.
+# Fantasy Football Platform
 
-Features
-User Registration and Management: Users can register and manage their profiles.
-Team Management:
-On user registration, a team is automatically created with an initial capital and 20 randomly generated players assigned to it (including goalkeepers, defenders, midfielders, and attackers).
-Player Management:
-Players can be listed for sale by specifying a sale price.
-Players marked as "for sale" can be transferred to another team.
-Transfer Market:
-Players listed for sale can be purchased by other teams if they have enough capital.
-A player's value may increase randomly after a transfer, adding a dynamic aspect to the game.
-Transaction History:
-Keeps track of all player transfers, including the buyer, seller, and transfer amount.
-JWT Authentication:
-Utilizes Django REST Framework's Simple JWT for secure user authentication.
-Project Structure
-The project follows a Domain-Driven Design (DDD) inspired approach to structure the code in a way that separates concerns and makes it more maintainable. This includes services for business logic, repositories for data access, and views for API handling.
+This project is a case study implementation of a Fantasy Football Platform using Django. It simulates the management of football teams, player transfers, and transaction history. The project follows a Design-Driven Design (DDD) inspired structure in most of the APIs, providing a well-organized and modular codebase.
 
-Key Components
-Models:
+## Features
 
-Team: Represents a team with players and manages total value updates.
-Player: Represents individual players with attributes like position, value, and availability for sale.
-Transaction: Tracks player transfer transactions.
-Services:
+- **User Registration and Profile Management:** Users can register, update their profiles, and manage their teams.
+- **Team Management:** When a user registers, a new team is automatically created for them. The team is populated with 20 players divided into different positions: Goalkeepers, Defenders, Midfielders, and Forwards.
+- **Player Management:** Players are randomly assigned to teams and can be listed for sale or transferred between teams.
+- **Transfer Market:** Users can list players for sale, view players available for sale, and transfer players to other teams.
+- **Transaction History:** Keeps a log of player transfers and their associated transaction details.
 
-Encapsulates business logic such as listing players for sale or transferring players between teams.
-Repositories:
+## Installation
 
-Handles data access and manipulation for the main entities.
-Views:
+To get the project running on your local machine, follow these steps:
 
-Uses Django REST Framework’s APIView and generics to implement the REST API endpoints.
-Setup Instructions
-Clone the repository:
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/SharjeelCC/fantasy_football.git
 
-bash
-Copy code
-git clone <repository-url>
-cd fantasy-football-platform
-Create a virtual environment:
+2. **Navigate to the Project Directory:**
+   ```bash
+   cd fantasy_football
 
-bash
-Copy code
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-Install the dependencies:
+3. **Create a Virtual Environment:**
+   ```bash
+   python -m venv venv
 
-bash
-Copy code
-pip install -r requirements.txt
-Set up the database:
+4. **Activate the Virtual Environment:**
 
-bash
-Copy code
-python manage.py migrate
-Create a superuser:
+      **On Windows:**
+       ```bash
+       venv\Scripts\activate
 
-bash
-Copy code
-python manage.py createsuperuser
-Run the server:
+     **On Unix or MacOS:**
+         ```bash
+         source venv/bin/activate
 
-bash
-Copy code
-python manage.py runserver
-API Endpoints
-User Registration: /api/users/
-User Login (JWT): /api/token/
-Team Information: /api/teams/
-List Players for Sale: /api/players/for-sale/
-List a Player for Sale: /api/players/<player_id>/list-for-sale/
-Transfer Player: /api/players/transfer/<player_id>/
-Transaction History: /api/players/transactions/
-Testing
-Pytest is used for unit and integration testing. To run the tests:
+5. **Install the Requirements:**
+   ```bash
+   pip install -r requirements.txt
 
-bash
-Copy code
-pytest
-Technologies Used
-Backend: Django, Django REST Framework
-Authentication: JWT (JSON Web Token)
-Database: SQLite (for development, can be replaced with PostgreSQL or MySQL in production)
-Testing: Pytest
-Domain-Driven Design Inspired Structure
-The code follows a DDD-inspired structure to separate concerns:
+6. **Apply Migrations:**
+   ```bash
+   python manage.py migrate
 
-Services layer: Encapsulates business logic for use cases.
-Repositories layer: Responsible for data access logic.
-Views layer: Manages request handling and response formatting.
+7. **Create a Superuser:**
+   ```bash
+   python manage.py createsuperuser
+
+8. **Run the Development Server:**
+   ```bash
+   python manage.py runserver
+
+## Usage
+  1. **Register a User:** Access the registration endpoint to create a new user. This will automatically create a new team and assign 20 players to it.
+  2. **Manage Team:** Use the API to update the team's name, capital, and other details.
+  3. **List a Player for Sale:** Players can be listed for sale using the ListPlayerForSaleView API.
+  4. **Transfer a Player:** Users can purchase players listed for sale and transfer them to their team using the PlayerTransferView API.
+  5. **View Transaction History:** The TransactionHistoryView API allows users to see the history of player transfers.
+
+## API Endpoints
+  ## User Endpoints
+    1. POST /api/register/ - Register a new user.
+    2. GET /api/profile/ - Retrieve user profile.
+    3. PUT /api/profile/ - Update user profile.
+
+  ## Team Endpoints
+    1. GET /api/teams/ - List all teams.
+    2. PUT /api/teams/<team_id>/ - Update team information.
+
+  ## Player Endpoints
+    1. POST /api/players/<player_id>/list_for_sale/ - List a player for sale.
+    2. POST /api/players/<player_id>/transfer/ - Transfer a player to another team.
+    3. GET /api/players/for_sale/ - View players available for sale.
+
+  ## Transaction Endpoints
+    1. GET /api/transactions/ - List transaction history.
+
+  ## Design-Driven Design (DDD) Inspired Structure
+    We used a Design-Driven Design (DDD) inspired approach in structuring the project. This involves:
+    1. Organizing the codebase by domain areas (e.g., Users, Teams, Players).
+    2. Creating services for business logic (e.g., list_player_for_sale, transfer_player).
+    3. Following clear boundaries between different layers of the application (e.g., views, serializers, models).
+
+  ## Running Tests
+    We used pytest for testing the application. To run the tests, follow these steps:
+
+  1. **Install pytest:**
+     ```bash
+      pip install pytest
+
+  2. **Run the tests:**
+     ```bash
+     pytest
+
+## Technologies Used
+  1. **Backend Framework:** Django, Django REST Framework
+  2. **Database:** SQLite (default), can be replaced with PostgreSQL or another database
+  3. **Testing:** pytest
+  4. **Authentication:** JWT with Django REST Framework Simple JWT
+
+## Folder Structure
+  ```bash
+  fantasy_football/
+├── players/
+│   ├── models.py
+│   ├── views.py
+│   ├── serializers.py
+│   ├── services.py
+│   └── tests/
+├── teams/
+│   ├── models.py
+│   ├── views.py
+│   ├── serializers.py
+│   └── tests/
+├── users/
+│   ├── models.py
+│   ├── views.py
+│   ├── serializers.py
+│   ├── signals.py
+│   └── tests/
+└── fantasy_football/
+    ├── settings.py
+    ├── urls.py
+    ├── wsgi.py
+    └── asgi.py
+
+
+    
+
+
+
+
+
+
