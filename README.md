@@ -114,6 +114,13 @@ To get the project running on your local machine, follow these steps:
     1. Robust error handling and data validation are implemented.
     2. Performance optimizations for handling large datasets can be considered for future enhancements.
 
+## Code Style
+
+    This project uses `flake8` to ensure PEP 8 compliance.
+    To check your code for PEP 8 violations, run:
+    ```bash
+    flake8 .
+
 ## Folder Structure
   ```bash
   fantasy_football/
