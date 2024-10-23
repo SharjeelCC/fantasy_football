@@ -71,7 +71,7 @@ To get the project running on your local machine, follow these steps:
 
   ## Player Endpoints
     1. POST /api/players/<player_id>/list_for_sale/ - List a player for sale.
-    2. POST /api/players/<player_id>/transfer/ - Transfer a player to another team.
+    2. POST /api/players/transfer/<player_id>/ - Transfer a player to another team.
     3. GET /api/players/for_sale/ - View players available for sale.
 
   ## Transaction Endpoints
@@ -118,6 +118,7 @@ To get the project running on your local machine, follow these steps:
 
     This project uses `flake8` to ensure PEP 8 compliance.
     To check your code for PEP 8 violations, run:
+
     ```bash
     flake8 .
 
