@@ -1,0 +1,8 @@
+Django>=4.0,<5.0
+djangorestframework>=3.14.0
+djangorestframework-simplejwt>=5.2.2
+pytest>=7.0
+pytest-django>=4.5
+pytest-cov>=4.0
+docker>=6.1  # If you need Docker support in your tests or locally
+requests>=2.31.0
