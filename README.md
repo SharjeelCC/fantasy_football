@@ -99,6 +99,20 @@ To get the project running on your local machine, follow these steps:
   2. **Database:** SQLite (default), can be replaced with PostgreSQL or another database
   3. **Testing:** pytest
   4. **Authentication:** JWT with Django REST Framework Simple JWT
+  5. **Containerization:** Docker
+
+## Dockerization
+1. **Build the Docker image:** 
+    ```bash
+    docker build -t fantasy-football
+2. **Build the Docker image:** 
+    ```bash
+    docker-compose up
+
+## Additional Considerations
+
+    1. Robust error handling and data validation are implemented.
+    2. Performance optimizations for handling large datasets can be considered for future enhancements.
 
 ## Folder Structure
   ```bash
@@ -125,6 +139,8 @@ To get the project running on your local machine, follow these steps:
     ├── urls.py
     ├── wsgi.py
     └── asgi.py
+
+
 
 
     
